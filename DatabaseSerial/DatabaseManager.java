@@ -1,4 +1,4 @@
-package com.cei.novax.backend;
+package com.cei.test.backend;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -7,16 +7,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.cei.novax.model.Checkpoint;
-import com.cei.novax.model.Commandsent;
-import com.cei.novax.model.Dronepoint;
-import com.cei.novax.model.FlightProfile;
-import com.cei.novax.model.Journey;
-import com.cei.novax.model.NovaxDevice;
-import com.cei.novax.model.Taskpoint;
-import com.cei.novax.model.Trajectory;
+import com.cei.test.model.Checkpoint;
+import com.cei.test.model.Commandsent;
+import com.cei.test.model.Dronepoint;
+import com.cei.test.model.FlightProfile;
+import com.cei.test.model.Journey;
+import com.cei.test.model.testDevice;
+import com.cei.test.model.Taskpoint;
+import com.cei.test.model.Trajectory;
 import com.j256.ormlite.stmt.PreparedQuery;
-import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.QueryBuilder;r
 import com.j256.ormlite.stmt.UpdateBuilder; 
 
 public class DatabaseManager
@@ -49,7 +49,7 @@ public class DatabaseManager
 		return helper;
 	}
 
-	public void addDevice(NovaxDevice nd){
+	public void addDevice(TestDevice nd){
 		try
 		{ 
 			getHelper().getDeviceDao().create(nd);
@@ -60,12 +60,12 @@ public class DatabaseManager
 		}
 	}
 	
-	public void updateDevice(NovaxDevice nd , String uuid ){
+	public void updateDevice(TestDevice nd , String uuid ){
 		try
 		{
 			if(getDevice(uuid)!=null){ //if not null update
 
-				UpdateBuilder<NovaxDevice, Integer> updateBuilder = getHelper().getDeviceDao().updateBuilder();				
+				UpdateBuilder<TestDevice, Integer> updateBuilder = getHelper().getDeviceDao().updateBuilder();				
 				updateBuilder.where().eq("uuid", uuid) ;
 				updateBuilder.updateColumnValue("dname", nd.getName());
 				updateBuilder.updateColumnValue("uuid", nd.getUUid()); 
@@ -79,14 +79,14 @@ public class DatabaseManager
 		}
 	}
 
-	public List<NovaxDevice> getAllNovaxDevice()
+	public List<TestDevice> getAllTestDevice()
 	{
-		List<NovaxDevice> records = new ArrayList<NovaxDevice>();
+		List<TestDevice> records = new ArrayList<TestDevice>();
 
 		try
 		{
-			QueryBuilder<NovaxDevice, Integer> queryBuilder = getHelper().getDeviceDao().queryBuilder(); 
-			PreparedQuery<NovaxDevice> preparedQuery = queryBuilder.prepare();
+			QueryBuilder<TestDevice, Integer> queryBuilder = getHelper().getDeviceDao().queryBuilder(); 
+			PreparedQuery<TestDevice> preparedQuery = queryBuilder.prepare();
 			records = getHelper().getDeviceDao().query(preparedQuery);
 		}
 		catch (SQLException e)
@@ -97,9 +97,9 @@ public class DatabaseManager
 		return records;
 	}
 		
-	public NovaxDevice getDevice(String uuid) {
+	public TestDevice getDevice(String uuid) {
 		// TODO Auto-generated method stub
-		NovaxDevice records = null;
+		TestDevice records = null;
 		if(uuid==null ) 
 			return null ;
 			
@@ -108,9 +108,9 @@ public class DatabaseManager
 		
 		try
 		{
-			QueryBuilder<NovaxDevice, Integer> queryBuilder = getHelper().getDeviceDao().queryBuilder();		
+			QueryBuilder<TestDevice, Integer> queryBuilder = getHelper().getDeviceDao().queryBuilder();		
 			queryBuilder.where().eq("uuid",  uuid);
-			PreparedQuery<NovaxDevice> preparedQuery = queryBuilder.prepare();
+			PreparedQuery<TestDevice> preparedQuery = queryBuilder.prepare();
 			records =getHelper().getDeviceDao().queryForFirst(preparedQuery);
 		}
 		catch (SQLException e)

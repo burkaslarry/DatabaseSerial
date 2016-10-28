@@ -1,11 +1,4 @@
-//
-//  DBManager.m
-//  NovaX
-//
-//  Created by Larry Lo on 3/18/15.
-//  Copyright (c) 2015 CEI Conrad. All rights reserved.
-//
-
+ 
 #import "DBManager.h"
 #import "Queue.h"
 
@@ -48,7 +41,7 @@ static DBManager  *sharedInstance = nil;
 -(NSString *) getDbFilePath
 {
     NSString * docsPath= NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    return [docsPath stringByAppendingPathComponent:@"novax.db"];
+    return [docsPath stringByAppendingPathComponent:@"Test.db"];
 }
 
 -(int) createTable:(NSString*) filePath table:(NSString*) tablename

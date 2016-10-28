@@ -1,4 +1,4 @@
-package com.cei.novax.backend;
+package com.cei.test.backend;
 
 
 
@@ -6,13 +6,13 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.cei.novax.model.Commandsent;
-import com.cei.novax.model.Dronepoint;
-import com.cei.novax.model.FlightProfile;
-import com.cei.novax.model.Journey;
-import com.cei.novax.model.NovaxDevice;
-import com.cei.novax.model.Taskpoint;
-import com.cei.novax.model.Trajectory;
+import com.cei.test.model.Commandsent;
+import com.cei.test.model.Dronepoint;
+import com.cei.test.model.FlightProfile;
+import com.cei.test.model.Journey;
+import com.cei.test.model.testDevice;
+import com.cei.test.model.Taskpoint;
+import com.cei.test.model.Trajectory;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -21,11 +21,11 @@ import com.j256.ormlite.table.TableUtils;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
-	private static final String DATABASE_NAME = "novax.sqlite";
+	private static final String DATABASE_NAME = "Test.sqlite";
 	private static final int DATABASE_VERSION = 1;
 
 	private Dao<FlightProfile, Integer> flightDao = null;
-	private Dao<NovaxDevice, Integer> deviceDao = null;
+	private Dao<TestDevice, Integer> deviceDao = null;
 	private Dao<Taskpoint, Integer> tkDao = null;
 	private Dao<Journey, Integer> jDao = null;
 	private Dao<Trajectory, Integer> tjDao = null;
@@ -41,7 +41,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		// TODO Auto-generated method stub
 		try {
 			TableUtils.createTable(connectionSource, FlightProfile.class);
-			TableUtils.createTable(connectionSource, NovaxDevice.class);
+			TableUtils.createTable(connectionSource, TestDevice.class);
 			TableUtils.createTable(connectionSource, Taskpoint.class);
 			TableUtils.createTable(connectionSource, Journey.class);
 			TableUtils.createTable(connectionSource, Trajectory.class);
@@ -61,7 +61,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		// TODO Auto-generated method stub
 		try {
 			//TableUtils.dropTable(connectionSource, FlightProfile.class, true);	
-			//TableUtils.dropTable(connectionSource, NovaxDevice.class , true);
+			//TableUtils.dropTable(connectionSource, TestDevice.class , true);
 			//TableUtils.dropTable(connectionSource, Taskpoint.class , true);
 			//TableUtils.dropTable(connectionSource, Journey.class , true);
 			//TableUtils.dropTable(connectionSource, Trajectory.class , true);
@@ -120,12 +120,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		 return flightDao;  
 	 }  
 	 
-	 public Dao<NovaxDevice, Integer> getDeviceDao() throws SQLException  
+	 public Dao<TestDevice, Integer> getDeviceDao() throws SQLException  
 	 {  
 		 if (deviceDao == null)  
 		 {  
 			 try {
-				 deviceDao = getDao(NovaxDevice.class);
+				 deviceDao = getDao(TestDevice.class);
 			} catch (java.sql.SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
